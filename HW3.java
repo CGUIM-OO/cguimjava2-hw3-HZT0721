@@ -1,36 +1,52 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Scanner;
 //import java.util.Scanner;
 
+
+
 /**
- * @author TODO: please add student ID and name here
- * Try to write some comments for your codes (methods, 10 points)
+ * @author TODO: B0544238¶À¤l·Ê
+ * Card class:
+ * 1.change instance field from int suit to Suit suit
+ * 2.change constructor from (int s, int r) to (Suit s, int r)
+ * 3.change printCard method : print(suit,int rank)
+ * 4.change getsuit method :return suit;
+ * 
+ * Deck class:
+ * 1.Add new Filed:ArrayList<Card> usedCard & public int nUsed
+ * 2.add shuffle() method: replace all the card in usedCard back to decks  
+ * make a random number to pick a random card to move to the first card,repeat it again and again
+ * after all reset nUsed  
+ * 3.add getOneCard() method: when decks is empty, call shuffle method
+ * return the first card and delete the first card .In the same time, put that card into usedCard and nUsed+1
+ * 
+ * HW3 class:
+ * 1.get nDeck by keyboard(scanner) key in
+ * 2.create a deck
+ * 3.get 2 cards and print them
+ * 4.shuffle it
+ * 
+ * little problem :the test"isShuffleWorking" can only test correctly when nDeck is 1 because it test nUsed has been reset or not after get 52 cards
+ *  But when nDeck >1 ,we don't need to reset(shuffle) after get 52 cards (decks is not empty) 
+ * 
  */
 public class HW3 {
 	public static void main(String[] args) {
-		//Scanner sc = new Scanner(System.in);
-		//System.out.println("input N(deck of cards):");
-		//String testn= sc.nextLine(); 
-		int nDeck=1;
-		//TODO: please add new fields and methods to Deck class (35)
-		//usedCard (5 points)
-		//nUsed (5 points)
-		//getOneCard (10 points)
-		//shuffle (10 points)
-		//constructor (5 points)
-		Deck deck=new Deck(nDeck);
+		Scanner sc = new Scanner(System.in);
+		System.out.println("input N(deck of cards):");
+		String testn= sc.nextLine(); 
+		int nDeck=Integer.parseInt(testn);
 		
-		//TODO: please check your output, make sure that you print newCard and newCard2 on your screen  (10 points)
-		//TODO: please add new fields and methods to Card class (25)
-		//Use enumerated type in Card (10 points)
-		//Constructor (5 points)
-		//printCard (5 points)
-		//getSuit (5 points)
+		Deck deck=new Deck(nDeck);
+				
 		Card newCard=deck.getOneCard();
 		newCard.printCard();
 		Card newCard2=deck.getOneCard();
 		newCard2.printCard();
 		deck.shuffle();
+		
 		if(isAllCardsCorrect(deck.getAllCards(),nDeck)){
 			if(!isShuffleWorking(deck,newCard,newCard2)){
 				System.out.println("All Card: Well done! But shufller is not working");
@@ -43,6 +59,7 @@ public class HW3 {
 		}
 
 	}
+		
 	/**
 	 * This method is used for checking your result, not a part of your HW3
 	 */
@@ -74,22 +91,27 @@ public class HW3 {
 				isCorrect=false;
 				break;
 			}
+			
 			if(checkHash.containsKey(suit+","+rank)){
+				
 				checkHash.put(suit+","+rank, 
 						checkHash.get(suit+","+rank)+1);
 			}else{
 				checkHash.put(suit+","+rank, 1);
+				
 			}
 
 		}
 		if(checkHash.keySet().size()==52){
 			for(int value:checkHash.values()){
 				if(value!=nDeck){
+					
 					isCorrect=false;
 					break;
 				}
 			}
 		}else{
+			
 			isCorrect=false;
 		}
 		return isCorrect;
