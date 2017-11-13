@@ -35,7 +35,7 @@ public Deck(int nDeck) {
 		}
 	}
 
-shuffle();
+
 }
 
 public void printDeck() {
@@ -96,3 +96,4 @@ public ArrayList<Card> getAllCards() {
 }
 
 
+ 
