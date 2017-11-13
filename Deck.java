@@ -76,7 +76,7 @@ public ArrayList<Card> getAllCards() {
  public Card getOneCard() {
 	 boolean empty = cards.isEmpty();
 	
-	 if(empty)
+	 if(!empty)
 	 {
 		shuffle();
 		 
