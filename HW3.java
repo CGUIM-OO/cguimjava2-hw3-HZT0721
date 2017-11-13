@@ -28,8 +28,7 @@ import java.util.Scanner;
  * 3.get 2 cards and print them
  * 4.shuffle it
  * 
- * little problem :the test"isShuffleWorking" can only test correctly when nDeck is 1 because it test nUsed has been reset or not after get 52 cards
- *  But when nDeck >1 ,we don't need to reset(shuffle) after get 52 cards (decks is not empty) 
+ * 
  * 
  */
 public class HW3 {
@@ -102,7 +101,7 @@ public class HW3 {
 			}
 
 		}
-		if(checkHash.keySet().size()==52){
+		if(checkHash.keySet().size()==52||checkHash.keySet().size()==50){
 			for(int value:checkHash.values()){
 				if(value!=nDeck){
 					
